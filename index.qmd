@@ -1,0 +1,613 @@
+---
+title: "Drawing a Christmas card with the ggplot2 package"
+author: "<br><br><strong>Ken Vu</strong><br> Cascadia R Conference | June 22, 2024"
+format:
+  revealjs: 
+#    width: 1920
+#    height: 1080
+#    theme: [default, custom.scss]
+    slide-number: true
+editor: visual
+from: markdown+emoji
+---
+
+# I. Introduction
+
+## Since get my MS in Stats, I was slowly losing my R knowledge
+
+::: columns
+::: {.column .medium width="50%"}
+![](images/intro_grad.jpg)
+:::
+
+::: {.column .medium width="50%"}
+![](images/intro_burnout.jpg)
+:::
+:::
+
+:::
+
+## I wanted to spread joy for the Christmas holiday season
+
+![](images/intro_xmas_conf.jpg)
+
+## So what did I decide to do then?
+
+-   **BUILD A CHRISTMAS CARD...WITH R CODE!!!**
+
+# II. The Design Process
+
+## STEP 1: Brainstorm the idea
+
+Find my motivation
+
+::: columns
+::: {.column width="100%"}
+![](images/step1_know_why.jpg){width="75%"}
+:::
+:::
+
+## STEP 1: Brainstorm the idea
+
+Visualize the outcome
+
+::: columns
+::: {.column .medium width="100%"}
+![](images/design_step1_holiday_card_draft.jpg){width="50%"}
+:::
+:::
+
+## STEP 2: Research your tools
+
+Chose the ggplot2 package due to popularity, familiarity, and customization
+
+![](images/step2_pick_ggplot2.png)
+
+## STEP 2: Research your tools
+
+-   Additional packages
+    -   `extrafont`: for loading in custom fonts
+    -   `dplyr`: for wrangling and working with data frames 
+
+```{r, echo=F, eval=T}
+library(ggplot2) # for data visualization
+library(extrafont) # for loading custom fonts
+library(dplyr) # for wrangling data frames
+```
+
+## STEP 3: Build the card
+
+-   With plotting any `ggplot2` object
+    -   First, find the right `ggplot2` function to plot what you want
+    -   Next, set up some data points that work with it
+    -   Then, plot and adjust output through `ggplot2` object parameters (ie.., `size`, `color`, etc)
+
+## STEP 3: Build the card
+
+-   Ex. Build the base of the Christmas tree
+-   First, find a function to meet your needs (i.e., `geom_polygon` for drawing shapes)
+
+## STEP 3: Build the card
+
+Set up coordinates for the tree base and tree trunk to fit `geom_polygon`'s plotting requirements
+
+```{r, echo=T}
+xmas_tree <- tribble(
+  ~x, ~y,
+  
+   # left side of tree base
+   -6, 5,
+   -3, 10,
+   -4.5, 10,
+   -2, 15,
+  
+   # top of tree
+   -3, 15,
+   0, 20,
+   3, 15,
+  
+   # right side of tree base
+   2, 15,
+   4.5, 10,
+   3, 10,
+   6, 5
+)
+
+# coordinates for the tree trunk
+xmas_trunk <- tribble(
+  ~x, ~y,
+   -1, 5,
+   1, 5,
+   1, 0,
+   -1, 0
+)
+```
+
+## STEP 3: Build the card
+
+Use `geom_polygon()` to draw shapes with coordinates (i.e., tree base and trunk)
+
+```{r, echo=T, eval=T}
+xmas_ggplot <- ggplot() +
+  
+  # adding tree
+  geom_polygon(data = xmas_tree,
+                mapping = aes(x, y),
+            fill = "#009E73") + 
+  
+  # adding trunk
+  geom_polygon(data = xmas_trunk,
+               mapping = aes(x, y),
+               fill = "#926718"
+               )
+```
+
+## STEP 3: Build the card
+
+```{r, echo=T, eval=T}
+xmas_ggplot
+```
+
+## STEP 3: Build the card
+
+This approach used for almost every aspect of the card to get this so far...
+
+```{r, echo=F, eval=T}
+xmas_ornaments <- tribble(
+  ~x, ~y, 
+   -6, 5, 
+   -4.5, 10,
+   -3, 15,
+    3, 15,
+    4.5, 10, 
+    6, 5,
+   -1, 15,
+ 0.25, 13,
+ 1.75, 14,
+   -1, 9,
+ 0.75, 7,
+  2.5, 8,
+ -3.5, 7,
+ -2.5, 11.7,
+  0.5, 17.8
+)
+
+xmas_ggplot <- xmas_ggplot +
+  geom_point(data = xmas_ornaments,
+             mapping = aes(x,y),
+             color = "#D55E00",
+             size = 3)
+
+xmas_sashes <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  -1.5, 17.6, 2.0, 16.6,
+  -2.5, 14.0, 3.5, 12.0,
+  -3.5, 9.4, 5.0, 6.8
+)
+
+xmas_ggplot <- xmas_ggplot +
+  # adding sashes to wrap around xmas tree
+    geom_curve(data = xmas_sashes,
+             mapping = aes(x = x, y = y, 
+                           xend = xend, 
+                           yend = yend),
+             size = 3,
+             color = "darkgrey",
+             
+             # how curved the point is
+             curvature = 0.35, 
+             
+             # how transparent the shape/point is
+             alpha = 0.8)
+
+xmas_ggplot <- xmas_ggplot +
+ # adding Christmas star
+  geom_point(data = data.frame(x = 0, y = 20.25),
+             mapping = aes(x, y),
+             size = 15,
+             shape="\u2605",
+             color = "#F0E442" 
+             ) + 
+  labs(caption = "Made with RStudio")
+
+xmas_ggplot
+```
+
+
+## STEP 3: Build the card
+
+Replace data viz elements (i.e., tick marks, axes labels, gridlines, etc) with festive aesthetics
+
+```{r, echo=T, eval=T}
+xmas_ggplot <- xmas_ggplot +
+  theme(
+    # make panel background black
+    panel.background = element_rect(fill = "black"), 
+    
+    # removing misc plotting elements
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text = element_blank(),
+    panel.grid = element_blank(),
+    
+    # adding brown frame around photo
+    plot.background = element_rect(fill = "#926718"),
+    
+    # removing plotting legend
+    legend.position = "none"
+  )
+```
+
+## STEP 3: Build the card
+
+Add some falling snow
+
+```{r, echo=T, eval=T}
+# TRIVIA: the seed number is the release date # of the song "Last Christmas" by Wham! (aka December 3, 1984)
+set.seed(120384) 
+
+snow_points <- data.frame(
+  x = runif(n = 300, min = -20, max = 17),
+  y = runif(n = 300, min = -2, max = 36)
+) 
+
+xmas_ggplot <- xmas_ggplot + 
+  geom_point(data = snow_points,
+             mapping = aes(x, y),
+             color = "white"
+             )
+```
+
+## STEP 3: Build the card
+
+Add a snowy ground
+
+```{r, echo=T, eval=T}
+# add points marking peaks of bumpy snowy
+# ground
+xmas_snowground <- tribble(
+  ~x, ~y,
+ -30, 2.5,
+ -10, 0.5,
+  -5, 1.5,
+   0, 0.2,
+   5, 0.8,
+  12, 0.4,
+  30, 1
+)
+```
+
+## STEP 3: Build the card
+
+Add a snowy ground
+
+```{r, echo=T, eval=T}
+xmas_ggplot<- xmas_ggplot + 
+  # plotting an uneven snowy ground
+  geom_ribbon(data = xmas_snowground,
+                 aes(x = x, ymax=y), 
+                 xmin = -Inf,
+                 xmax = Inf,
+                 ymin = 0, 
+                 fill="white") +
+  
+  # adding a flat horizontal line for the snowy ground
+  geom_hline(yintercept = seq(0.5, -50, -0.01),
+             color = "white")
+```
+
+
+## STEP 3: Build the card
+
+```{r, echo=T, eval=T}
+xmas_ggplot
+```
+
+## STEP 3: Build the card
+- Used `coord_cartesian` instead of `xlim` and `ylim` to change range of x and y values plotted
+- `coord_cartesian` doesn't throw out points or areas out of range
+```{r, echo=T, eval=T}
+xmas_ggplot <- xmas_ggplot + 
+  
+  # expand plotting limits
+  coord_cartesian(ylim = c(0, 35), xlim = c(-15, 15)) 
+```
+
+
+## STEP 3: Build the card
+
+Now, add a holiday greeting
+
+```{r, echo=T, eval=T}
+font_import(paths = getwd(), prompt = F)
+loadfonts()
+
+xmas_ggplot <- xmas_ggplot + 
+# adding holiday greeting
+  geom_text(aes(label = "Happy Holidays!", 
+                 x = 0, y = 29),
+            color = "#F0E442", 
+            size = 16,
+            family = "Segoe Script") +
+  
+  # adjusting the caption text
+  theme(plot.caption = element_text(family = "Segoe Script", face = "bold"))
+```
+
+## STEP 3: Build the card
+
+So far, looks good...
+
+```{r, echo=T, eval=T}
+xmas_ggplot
+```
+
+# But, WAIT!
+
+![](images/step3_stop_sign.jpg)
+
+## 
+
+![](images/step3_wanna_build_snowman.gif){.image-center}
+
+## STEP 3: Build the card
+
+-   Building the snowman's head, chest, torso involves the same set of steps used for the tree
+- Ex. First, find a function to fit your plotting needs 
+- I.e., `geom_point` for three oversized points for snowman's body
+
+## STEP 3: Build the card
+Set up coordinates for where parts of the body will be
+
+```{r, echo=T, eval=T}
+# coordinates for three snowballs forming snowman's body
+snowman_body <- tribble(
+  ~x_val, ~y_val,
+  10, 3, 
+  10, 8,
+  10, 12, 
+)
+```
+
+## STEP 3: Build the card
+- Then, plot them
+- Make aesthetic changes if needed (i.e., size, color)
+```{r, echo=T, eval=T}
+xmas_ggplot <- xmas_ggplot +
+  
+  # plotting snowman's body
+  geom_point(data = snowman_body[1,],
+             mapping = aes(x_val, y_val),
+             size = 25,
+             color = "white") + 
+  geom_point(data = snowman_body[2,],
+             mapping = aes(x_val, y_val),
+             size = 19,
+             color = "white") + 
+  geom_point(data = snowman_body[3,],
+             mapping = aes(x_val, y_val),
+             size = 16,
+             color = "white")
+```
+
+## STEP 3: Build the card
+
+-   Repeat aforementioned pattern of steps for other parts of the snowman
+- I.e., eyes, nose, mouth, chest buttons, arms
+
+```{r, echo=F, eval=T}
+snowman_parts <- tribble(
+  ~x_val, ~y_val,
+  
+  # eyes
+  9.55, 12.85, 
+  10.45, 12.85,
+  
+  # central body dots
+  10, 9.15,
+  10, 8,
+  10, 6.85
+  
+)
+
+# storing data for snowman arms
+snowman_arms <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  9, 9, 7, 11,
+  11, 9, 13, 11
+)
+
+# data for snowman's mouth
+snowman_mouth <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  9.25, 11.25, 10.75, 11.25
+)
+
+xmas_ggplot <- xmas_ggplot +
+  
+  # draw arms
+  geom_segment(data = snowman_arms,
+            mapping = aes(x = x, y = y,
+                          xend = xend,
+                          yend = yend),
+            color = "#E69F00",
+            linewidth = 1.6,
+            lineend = "round")
+
+xmas_ggplot <- xmas_ggplot +
+  
+  # plotting the eyes and body dots of the snowman
+  geom_point(data = snowman_parts,
+             mapping = aes(x_val, y_val),
+             color = "black",
+             size = 1.6
+             ) +
+  
+  # plotting the nose 
+  geom_point(data = data.frame(x = 10, y = 11.85),
+             mapping = aes(x, y),
+             color = "#E69F00",
+             size = 1.6) +
+  
+  # draw the mouth
+  geom_curve(data = snowman_mouth,
+             mapping = aes(x = x, y = y, 
+                           xend = xend, 
+                           yend = yend),
+             linetype = 2)
+xmas_ggplot
+```
+
+
+
+## STEP 3: Build the card
+
+Add hat for snowman
+
+```{r, echo=T, eval=T}
+# coordinates for top of the hat
+snowman_hat_top <- tribble(
+  ~x0, ~x1, ~y0, ~y1,
+  9.25, 10.75, 14.5, 17
+)
+
+xmas_ggplot <- xmas_ggplot + 
+  # hat top
+    geom_rect(
+      data = snowman_hat_top,
+      mapping = aes(xmin = x0, ymin = y0,
+                    xmax = x1, ymax = y1),
+      fill = "#2c2c2c"
+      
+    )
+```
+
+## STEP 3: Build the card
+
+Add hat for snowman
+
+```{r, echo=T, eval=T}
+xmas_ggplot <- xmas_ggplot + 
+  
+      # hat base
+  geom_segment(
+    data = data.frame(x = 8.5, y = 14,
+                      xend = 11.5, yend = 14),
+    mapping = aes(x = x, y = y,
+                  xend = xend, yend = yend),
+    color = "#2c2c2c",
+    lineend = "round",
+    size = 2
+  ) +
+  
+    # red hat band
+    geom_segment(
+    data = data.frame(x = 9.25, y = 14.45,
+                      xend = 10.75, yend = 14.45),
+    mapping = aes(x = x, y = y,
+                  xend = xend, yend = yend),
+    color = "#D55E00",
+    lineend = "round",
+    size = 2
+  )
+```
+
+## STEP 3: Build the card
+
+Add scarf
+
+```{r, echo=T, eval=T}
+# two tribbles for coordinates for parts of the scarf
+snowman_scarf <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  9, 10, 11, 10
+)
+
+snowman_scarf2 <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  9.25, 10, 8, 6
+)
+```
+
+## STEP 3: Build the card
+
+Add scarf
+
+```{r, echo=T, eval=T}
+xmas_ggplot <- xmas_ggplot + 
+  
+  # draw the scarf
+  geom_curve(data = snowman_scarf2,
+             mapping = aes(x = x, y = y, 
+                           xend = xend, 
+                           yend = yend),
+             linewidth = 3,
+             color = "#56B4E9",
+             curvature = -0.25) +
+  
+  geom_curve(data = snowman_scarf,
+             mapping = aes(x = x, y = y, 
+                           xend = xend, 
+                           yend = yend),
+             linewidth = 3,
+             color = "#56B4E9") 
+```
+
+# ...and, the moment you've been waitin for!
+
+## Ta da!
+
+```{r, fig.height=5, fig.width=8}
+xmas_ggplot
+```
+
+# III. Conclusion
+
+Three takeaways from this Christmas card project
+
+## 1. I learned more about the `ggplot2` library
+
+-   New functions like `geom_ribbon()`
+-   How the grammar of graphics works
+-   More practice with data viz
+
+## 2. Honed in my process for better project management
+
+-   Knowing my why
+-   Creating a vision of the outcome
+-   Researching methods to achieve it
+-   Execution
+
+# These two lessons are valid
+
+# But,... not as important as this one...
+
+## 3. Be true to yourself
+
+-   Remember to have fun with whatever you do!
+-   Everyone has a unique spark that makes them special
+-   So always believe that your perspective matters...
+
+## Because you KEN do it!
+
+![](images/conclusion_3_kenough.jpg)
+
+## Thank you so much!
+
+Here's where to connect with me!
+
+::: columns
+::: {.column width="50%"}
+
+{{< fa brands mastodon size=xl >}} [\@kenvu777](https://fosstodon.org/@kenvu777)
+
+{{< fa brands linkedin size=xl >}} [linkedin.com/in/kenvu1](https://www.linkedin.com/in/kenvu1)
+
+{{< fa brands github size=xl >}} [Ken-Vu](https://github.com/Ken-Vu)
+
+{{< fa solid display >}} [Slides](https://github.com/Ken-Vu/making_xmas_card_ggplot2)
+:::
+::: {.column width="50%"}
+:::
+::: 
+
