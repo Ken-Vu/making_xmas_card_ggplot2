@@ -24,7 +24,6 @@ from: markdown+emoji
 ![](images/intro_burnout.jpg)
 :::
 :::
-
 :::
 
 ## I wanted to spread joy for the Christmas holiday season
@@ -67,7 +66,7 @@ Chose the ggplot2 package due to popularity, familiarity, and customization
 
 -   Additional packages
     -   `extrafont`: for loading in custom fonts
-    -   `dplyr`: for wrangling and working with data frames 
+    -   `dplyr`: for wrangling and working with data frames
 
 ```{r, echo=F, eval=T}
 library(ggplot2) # for data visualization
@@ -213,7 +212,6 @@ xmas_ggplot <- xmas_ggplot +
 xmas_ggplot
 ```
 
-
 ## STEP 3: Build the card
 
 Replace data viz elements (i.e., tick marks, axes labels, gridlines, etc) with festive aesthetics
@@ -296,7 +294,6 @@ xmas_ggplot<- xmas_ggplot +
              color = "white")
 ```
 
-
 ## STEP 3: Build the card
 
 ```{r, echo=T, eval=T}
@@ -304,15 +301,16 @@ xmas_ggplot
 ```
 
 ## STEP 3: Build the card
-- Used `coord_cartesian` instead of `xlim` and `ylim` to change range of x and y values plotted
-- `coord_cartesian` doesn't throw out points or areas out of range
+
+-   Used `coord_cartesian` to zoom in where tree is without throwing out points
+out of range
+
 ```{r, echo=T, eval=T}
 xmas_ggplot <- xmas_ggplot + 
   
   # expand plotting limits
   coord_cartesian(ylim = c(0, 35), xlim = c(-15, 15)) 
 ```
-
 
 ## STEP 3: Build the card
 
@@ -342,10 +340,6 @@ So far, looks good...
 xmas_ggplot
 ```
 
-# But, WAIT!
-
-![](images/step3_stop_sign.jpg)
-
 ## 
 
 ![](images/step3_wanna_build_snowman.gif){.image-center}
@@ -353,10 +347,11 @@ xmas_ggplot
 ## STEP 3: Build the card
 
 -   Building the snowman's head, chest, torso involves the same set of steps used for the tree
-- Ex. First, find a function to fit your plotting needs 
-- I.e., `geom_point` for three oversized points for snowman's body
+-   Ex. First, find a function to fit your plotting needs
+-   I.e., `geom_point` for three oversized points for snowman's body
 
 ## STEP 3: Build the card
+
 Set up coordinates for where parts of the body will be
 
 ```{r, echo=T, eval=T}
@@ -370,8 +365,10 @@ snowman_body <- tribble(
 ```
 
 ## STEP 3: Build the card
-- Then, plot them
-- Make aesthetic changes if needed (i.e., size, color)
+
+-   Then, plot them
+-   Make aesthetic changes if needed (i.e., size, color)
+
 ```{r, echo=T, eval=T}
 xmas_ggplot <- xmas_ggplot +
   
@@ -393,7 +390,7 @@ xmas_ggplot <- xmas_ggplot +
 ## STEP 3: Build the card
 
 -   Repeat aforementioned pattern of steps for other parts of the snowman
-- I.e., eyes, nose, mouth, chest buttons, arms
+-   I.e., eyes, nose, mouth, chest buttons, arms
 
 ```{r, echo=F, eval=T}
 snowman_parts <- tribble(
@@ -457,8 +454,6 @@ xmas_ggplot <- xmas_ggplot +
              linetype = 2)
 xmas_ggplot
 ```
-
-
 
 ## STEP 3: Build the card
 
@@ -578,9 +573,7 @@ Three takeaways from this Christmas card project
 -   Researching methods to achieve it
 -   Execution
 
-# These two lessons are valid
-
-# But,... not as important as this one...
+# These two lessons are valid, but not as important as this one...
 
 ## 3. Be true to yourself
 
@@ -594,10 +587,9 @@ Three takeaways from this Christmas card project
 
 ## Thank you so much!
 
-Here's where to connect with me!
-
 ::: columns
 ::: {.column width="50%"}
+Here's where to connect with me!
 
 {{< fa brands mastodon size=xl >}} [\@kenvu777](https://fosstodon.org/@kenvu777)
 
@@ -607,7 +599,9 @@ Here's where to connect with me!
 
 {{< fa solid display >}} [Slides](https://github.com/Ken-Vu/making_xmas_card_ggplot2)
 :::
-::: {.column width="50%"}
-:::
-::: 
 
+::: {.column width="50%"}
+Scan to see all my links:
+![](images/QR_code_LinktoKensLinktree.png){width="60%"}
+:::
+:::
