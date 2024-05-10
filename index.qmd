@@ -3,11 +3,12 @@ title: "Drawing a Christmas card with the ggplot2 package"
 author: "<br><br><strong>Ken Vu</strong><br> Cascadia R Conference | June 22, 2024"
 format:
   revealjs: 
-#    width: 1920
-#    height: 1080
+    width: 1920
+    height: 1080
 #    theme: [default, custom.scss]
     slide-number: true
 editor: visual
+fontsize: 48pt
 from: markdown+emoji
 ---
 
@@ -17,12 +18,11 @@ from: markdown+emoji
 
 ::: columns
 ::: {.column .medium width="50%"}
-![](images/intro_grad.jpg)
+![](images/intro_grad.jpg){width="75%"}
 :::
 
 ::: {.column .medium width="50%"}
-![](images/intro_burnout.jpg)
-:::
+![](images/intro_burnout.jpg){width="85%"}
 :::
 :::
 
@@ -52,7 +52,7 @@ Visualize the outcome
 
 ::: columns
 ::: {.column .medium width="100%"}
-![](images/design_step1_holiday_card_draft.jpg){width="50%"}
+![](images/design_step1_holiday_card_draft.jpg){width="40%"}
 :::
 :::
 
@@ -302,8 +302,7 @@ xmas_ggplot
 
 ## STEP 3: Build the card
 
--   Used `coord_cartesian` to zoom in where tree is without throwing out points
-out of range
+-   Used `coord_cartesian` to zoom in where tree is without throwing out points out of range
 
 ```{r, echo=T, eval=T}
 xmas_ggplot <- xmas_ggplot + 
@@ -472,7 +471,7 @@ xmas_ggplot <- xmas_ggplot +
       data = snowman_hat_top,
       mapping = aes(xmin = x0, ymin = y0,
                     xmax = x1, ymax = y1),
-      fill = "#2c2c2c"
+      fill = "#404040"
       
     )
 ```
@@ -490,7 +489,7 @@ xmas_ggplot <- xmas_ggplot +
                       xend = 11.5, yend = 14),
     mapping = aes(x = x, y = y,
                   xend = xend, yend = yend),
-    color = "#2c2c2c",
+    color = "#404040",
     lineend = "round",
     size = 2
   ) +
@@ -575,11 +574,11 @@ Three takeaways from this Christmas card project
 
 # These two lessons are valid, but not as important as this one...
 
-## 3. Be true to yourself
+## 3. Be yourself
 
--   Remember to have fun with whatever you do!
--   Everyone has a unique spark that makes them special
--   So always believe that your perspective matters...
+-   Every idea or perspective is worth hearing
+-   More diversity creates more innovation, inspiration, and representation
+-   You're someone made special
 
 ## Because you KEN do it!
 
@@ -601,7 +600,6 @@ Here's where to connect with me!
 :::
 
 ::: {.column width="50%"}
-Scan to see all my links:
-![](images/QR_code_LinktoKensLinktree.png){width="60%"}
+Scan to see all my links: ![](images/QR_code_LinktoKensLinktree.png){width="60%"}
 :::
 :::
