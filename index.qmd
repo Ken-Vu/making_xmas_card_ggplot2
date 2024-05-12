@@ -14,6 +14,10 @@ from: markdown+emoji
 
 # I. Introduction
 
+## As a creative person at heart, I ended up getting an MS in Statistics
+![](images/stories_data_with_soul_quote.jpg)
+
+
 ## Since get my MS in Stats, I was slowly losing my R knowledge
 
 ::: columns
