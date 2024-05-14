@@ -408,6 +408,19 @@
 <h1>I. Introduction</h1>
 
 </section>
+<section id="as-a-creative-person-at-heart-i-enjoyed-r-as-an-art-form." class="slide level2">
+<h2>As a creative person at heart, I enjoyed R as an art form.</h2>
+<ul>
+<li>“Maybe stories are just data with a soul.” - Brene Brown</li>
+</ul>
+<div class="columns">
+<div class="column medium" style="width:50%;">
+<p><img data-src="images/ken_guitar.jpg" style="width:85.0%"></p>
+</div><div class="column medium" style="width:50%;">
+<p><img data-src="images/r_code_logo.png" style="width:65.0%"></p>
+</div>
+</div>
+</section>
 <section id="since-get-my-ms-in-stats-i-was-slowly-losing-my-r-knowledge" class="slide level2">
 <h2>Since get my MS in Stats, I was slowly losing my R knowledge</h2>
 <div class="columns">
@@ -680,142 +693,103 @@
 <section id="step-3-build-the-card-14" class="slide level2">
 <h2>STEP 3: Build the card</h2>
 <ul>
-<li>Building the snowman’s head, chest, torso involves the same set of steps used for the tree</li>
-<li>Ex. First, find a function to fit your plotting needs</li>
-<li>I.e., <code>geom_point</code> for three oversized points for snowman’s body</li>
+<li>Building the snowman still involves finding the right <code>ggplot2</code> functions, making points, and plotting them</li>
 </ul>
 </section>
 <section id="step-3-build-the-card-15" class="slide level2">
 <h2>STEP 3: Build the card</h2>
-<p>Set up coordinates for where parts of the body will be</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># coordinates for three snowballs forming snowman's body</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>snowman_body <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="sc">~</span>x_val, <span class="sc">~</span>y_val,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="dv">10</span>, <span class="dv">3</span>, </span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="dv">10</span>, <span class="dv">8</span>,</span>
-<span id="cb12-6"><a href="#cb12-6"></a>  <span class="dv">10</span>, <span class="dv">12</span>, </span>
-<span id="cb12-7"><a href="#cb12-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
+<ul>
+<li>Bu ilt snowman with functions <code>geom_point()</code>, <code>geom_segment()</code>, and <code>geom_curve()</code></li>
+</ul>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="step-3-build-the-card-16" class="slide level2">
 <h2>STEP 3: Build the card</h2>
-<ul>
-<li>Then, plot them</li>
-<li>Make aesthetic changes if needed (i.e., size, color)</li>
-</ul>
+<p>Add hat for snowman</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  </span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="co"># plotting snowman's body</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> snowman_body[<span class="dv">1</span>,],</span>
-<span id="cb13-5"><a href="#cb13-5"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(x_val, y_val),</span>
-<span id="cb13-6"><a href="#cb13-6"></a>             <span class="at">size =</span> <span class="dv">25</span>,</span>
-<span id="cb13-7"><a href="#cb13-7"></a>             <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> snowman_body[<span class="dv">2</span>,],</span>
-<span id="cb13-9"><a href="#cb13-9"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(x_val, y_val),</span>
-<span id="cb13-10"><a href="#cb13-10"></a>             <span class="at">size =</span> <span class="dv">19</span>,</span>
-<span id="cb13-11"><a href="#cb13-11"></a>             <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb13-12"><a href="#cb13-12"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> snowman_body[<span class="dv">3</span>,],</span>
-<span id="cb13-13"><a href="#cb13-13"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(x_val, y_val),</span>
-<span id="cb13-14"><a href="#cb13-14"></a>             <span class="at">size =</span> <span class="dv">16</span>,</span>
-<span id="cb13-15"><a href="#cb13-15"></a>             <span class="at">color =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># coordinates for top of the hat</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>snowman_hat_top <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="sc">~</span>x0, <span class="sc">~</span>x1, <span class="sc">~</span>y0, <span class="sc">~</span>y1,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fl">9.25</span>, <span class="fl">10.75</span>, <span class="fl">14.5</span>, <span class="dv">17</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="co"># hat top</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="fu">geom_rect</span>(</span>
+<span id="cb12-10"><a href="#cb12-10"></a>      <span class="at">data =</span> snowman_hat_top,</span>
+<span id="cb12-11"><a href="#cb12-11"></a>      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">xmin =</span> x0, <span class="at">ymin =</span> y0,</span>
+<span id="cb12-12"><a href="#cb12-12"></a>                    <span class="at">xmax =</span> x1, <span class="at">ymax =</span> y1),</span>
+<span id="cb12-13"><a href="#cb12-13"></a>      <span class="at">fill =</span> <span class="st">"#404040"</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>      </span>
+<span id="cb12-15"><a href="#cb12-15"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-3-build-the-card-17" class="slide level2">
 <h2>STEP 3: Build the card</h2>
-<ul>
-<li>Repeat aforementioned pattern of steps for other parts of the snowman</li>
-</ul>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
-<section id="step-3-build-the-card-18" class="slide level2">
-<h2>STEP 3: Build the card</h2>
 <p>Add hat for snowman</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># coordinates for top of the hat</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>snowman_hat_top <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="sc">~</span>x0, <span class="sc">~</span>x1, <span class="sc">~</span>y0, <span class="sc">~</span>y1,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fl">9.25</span>, <span class="fl">10.75</span>, <span class="fl">14.5</span>, <span class="dv">17</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  </span>
+<span id="cb13-3"><a href="#cb13-3"></a>      <span class="co"># hat base</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fl">8.5</span>, <span class="at">y =</span> <span class="dv">14</span>,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>                      <span class="at">xend =</span> <span class="fl">11.5</span>, <span class="at">yend =</span> <span class="dv">14</span>),</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>                  <span class="at">xend =</span> xend, <span class="at">yend =</span> yend),</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="at">color =</span> <span class="st">"#404040"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    <span class="at">lineend =</span> <span class="st">"round"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>  </span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="co"># red hat band</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>    <span class="fu">geom_segment</span>(</span>
+<span id="cb13-16"><a href="#cb13-16"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fl">9.25</span>, <span class="at">y =</span> <span class="fl">14.45</span>,</span>
+<span id="cb13-17"><a href="#cb13-17"></a>                      <span class="at">xend =</span> <span class="fl">10.75</span>, <span class="at">yend =</span> <span class="fl">14.45</span>),</span>
+<span id="cb13-18"><a href="#cb13-18"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y,</span>
+<span id="cb13-19"><a href="#cb13-19"></a>                  <span class="at">xend =</span> xend, <span class="at">yend =</span> yend),</span>
+<span id="cb13-20"><a href="#cb13-20"></a>    <span class="at">color =</span> <span class="st">"#D55E00"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21"></a>    <span class="at">lineend =</span> <span class="st">"round"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-3-build-the-card-18" class="slide level2">
+<h2>STEP 3: Build the card</h2>
+<p>Add scarf</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># two tribbles for coordinates for parts of the scarf</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>snowman_scarf <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>xend, <span class="sc">~</span>yend,</span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">10</span></span>
 <span id="cb14-5"><a href="#cb14-5"></a>)</span>
 <span id="cb14-6"><a href="#cb14-6"></a></span>
-<span id="cb14-7"><a href="#cb14-7"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb14-8"><a href="#cb14-8"></a>  <span class="co"># hat top</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a>    <span class="fu">geom_rect</span>(</span>
-<span id="cb14-10"><a href="#cb14-10"></a>      <span class="at">data =</span> snowman_hat_top,</span>
-<span id="cb14-11"><a href="#cb14-11"></a>      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">xmin =</span> x0, <span class="at">ymin =</span> y0,</span>
-<span id="cb14-12"><a href="#cb14-12"></a>                    <span class="at">xmax =</span> x1, <span class="at">ymax =</span> y1),</span>
-<span id="cb14-13"><a href="#cb14-13"></a>      <span class="at">fill =</span> <span class="st">"#404040"</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a>      </span>
-<span id="cb14-15"><a href="#cb14-15"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-7"><a href="#cb14-7"></a>snowman_scarf2 <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>xend, <span class="sc">~</span>yend,</span>
+<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fl">9.25</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">6</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-3-build-the-card-19" class="slide level2">
 <h2>STEP 3: Build the card</h2>
-<p>Add hat for snowman</p>
+<p>Add scarf</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
 <span id="cb15-2"><a href="#cb15-2"></a>  </span>
-<span id="cb15-3"><a href="#cb15-3"></a>      <span class="co"># hat base</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb15-5"><a href="#cb15-5"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fl">8.5</span>, <span class="at">y =</span> <span class="dv">14</span>,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>                      <span class="at">xend =</span> <span class="fl">11.5</span>, <span class="at">yend =</span> <span class="dv">14</span>),</span>
-<span id="cb15-7"><a href="#cb15-7"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y,</span>
-<span id="cb15-8"><a href="#cb15-8"></a>                  <span class="at">xend =</span> xend, <span class="at">yend =</span> yend),</span>
-<span id="cb15-9"><a href="#cb15-9"></a>    <span class="at">color =</span> <span class="st">"#404040"</span>,</span>
-<span id="cb15-10"><a href="#cb15-10"></a>    <span class="at">lineend =</span> <span class="st">"round"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a>  </span>
-<span id="cb15-14"><a href="#cb15-14"></a>    <span class="co"># red hat band</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a>    <span class="fu">geom_segment</span>(</span>
-<span id="cb15-16"><a href="#cb15-16"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fl">9.25</span>, <span class="at">y =</span> <span class="fl">14.45</span>,</span>
-<span id="cb15-17"><a href="#cb15-17"></a>                      <span class="at">xend =</span> <span class="fl">10.75</span>, <span class="at">yend =</span> <span class="fl">14.45</span>),</span>
-<span id="cb15-18"><a href="#cb15-18"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y,</span>
-<span id="cb15-19"><a href="#cb15-19"></a>                  <span class="at">xend =</span> xend, <span class="at">yend =</span> yend),</span>
-<span id="cb15-20"><a href="#cb15-20"></a>    <span class="at">color =</span> <span class="st">"#D55E00"</span>,</span>
-<span id="cb15-21"><a href="#cb15-21"></a>    <span class="at">lineend =</span> <span class="st">"round"</span>,</span>
-<span id="cb15-22"><a href="#cb15-22"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-20" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add scarf</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># two tribbles for coordinates for parts of the scarf</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>snowman_scarf <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>xend, <span class="sc">~</span>yend,</span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">10</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>)</span>
-<span id="cb16-6"><a href="#cb16-6"></a></span>
-<span id="cb16-7"><a href="#cb16-7"></a>snowman_scarf2 <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb16-8"><a href="#cb16-8"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>xend, <span class="sc">~</span>yend,</span>
-<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fl">9.25</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">6</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-21" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add scarf</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb17-2"><a href="#cb17-2"></a>  </span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="co"># draw the scarf</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">geom_curve</span>(<span class="at">data =</span> snowman_scarf2,</span>
-<span id="cb17-5"><a href="#cb17-5"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
-<span id="cb17-6"><a href="#cb17-6"></a>                           <span class="at">xend =</span> xend, </span>
-<span id="cb17-7"><a href="#cb17-7"></a>                           <span class="at">yend =</span> yend),</span>
-<span id="cb17-8"><a href="#cb17-8"></a>             <span class="at">linewidth =</span> <span class="dv">3</span>,</span>
-<span id="cb17-9"><a href="#cb17-9"></a>             <span class="at">color =</span> <span class="st">"#56B4E9"</span>,</span>
-<span id="cb17-10"><a href="#cb17-10"></a>             <span class="at">curvature =</span> <span class="sc">-</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb17-11"><a href="#cb17-11"></a>  </span>
-<span id="cb17-12"><a href="#cb17-12"></a>  <span class="fu">geom_curve</span>(<span class="at">data =</span> snowman_scarf,</span>
-<span id="cb17-13"><a href="#cb17-13"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
-<span id="cb17-14"><a href="#cb17-14"></a>                           <span class="at">xend =</span> xend, </span>
-<span id="cb17-15"><a href="#cb17-15"></a>                           <span class="at">yend =</span> yend),</span>
-<span id="cb17-16"><a href="#cb17-16"></a>             <span class="at">linewidth =</span> <span class="dv">3</span>,</span>
-<span id="cb17-17"><a href="#cb17-17"></a>             <span class="at">color =</span> <span class="st">"#56B4E9"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="co"># draw the scarf</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_curve</span>(<span class="at">data =</span> snowman_scarf2,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
+<span id="cb15-6"><a href="#cb15-6"></a>                           <span class="at">xend =</span> xend, </span>
+<span id="cb15-7"><a href="#cb15-7"></a>                           <span class="at">yend =</span> yend),</span>
+<span id="cb15-8"><a href="#cb15-8"></a>             <span class="at">linewidth =</span> <span class="dv">3</span>,</span>
+<span id="cb15-9"><a href="#cb15-9"></a>             <span class="at">color =</span> <span class="st">"#56B4E9"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10"></a>             <span class="at">curvature =</span> <span class="sc">-</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>  </span>
+<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">geom_curve</span>(<span class="at">data =</span> snowman_scarf,</span>
+<span id="cb15-13"><a href="#cb15-13"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
+<span id="cb15-14"><a href="#cb15-14"></a>                           <span class="at">xend =</span> xend, </span>
+<span id="cb15-15"><a href="#cb15-15"></a>                           <span class="at">yend =</span> yend),</span>
+<span id="cb15-16"><a href="#cb15-16"></a>             <span class="at">linewidth =</span> <span class="dv">3</span>,</span>
+<span id="cb15-17"><a href="#cb15-17"></a>             <span class="at">color =</span> <span class="st">"#56B4E9"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>

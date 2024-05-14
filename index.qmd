@@ -14,11 +14,20 @@ from: markdown+emoji
 
 # I. Introduction
 
-## As a creative person at heart, I ended up getting an MS in Statistics
-![](images/stories_data_with_soul_quote.jpg)
+## As a creative person at heart, I enjoyed R as an art form.
 
+- "Maybe stories are just data with a soul." - Brene Brown
 
-## Since get my MS in Stats, I was slowly losing my R knowledge
+::: columns
+::: {.column .medium width="50%"}
+![](images/ken_guitar.jpg){width="85%"}
+:::
+::: {.column .medium width="50%"}
+![](images/r_code_logo.png){width="65%"}
+:::
+:::
+
+## Around the time I got my MS in Stats, I was slowly losing my R knowledge
 
 ::: columns
 ::: {.column .medium width="50%"}
@@ -349,15 +358,12 @@ xmas_ggplot
 
 ## STEP 3: Build the card
 
--   Building the snowman's head, chest, torso involves the same set of steps used for the tree
--   Ex. First, find a function to fit your plotting needs
--   I.e., `geom_point` for three oversized points for snowman's body
+-   Building the snowman still involves finding the right `ggplot2` functions, making points, and plotting them
 
 ## STEP 3: Build the card
+- Bu ilt snowman with functions `geom_point()`, `geom_segment()`, and `geom_curve()`
 
-Set up coordinates for where parts of the body will be
-
-```{r, echo=T, eval=T}
+```{r, echo=F, eval=T}
 # coordinates for three snowballs forming snowman's body
 snowman_body <- tribble(
   ~x_val, ~y_val,
@@ -367,12 +373,7 @@ snowman_body <- tribble(
 )
 ```
 
-## STEP 3: Build the card
-
--   Then, plot them
--   Make aesthetic changes if needed (i.e., size, color)
-
-```{r, echo=T, eval=T}
+```{r, echo=F, eval=T}
 xmas_ggplot <- xmas_ggplot +
   
   # plotting snowman's body
@@ -389,10 +390,6 @@ xmas_ggplot <- xmas_ggplot +
              size = 16,
              color = "white")
 ```
-
-## STEP 3: Build the card
-
--   Repeat aforementioned pattern of steps for other parts of the snowman
 
 ```{r, echo=F, eval=T}
 snowman_parts <- tribble(
