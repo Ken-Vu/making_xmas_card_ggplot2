@@ -361,7 +361,7 @@ xmas_ggplot
 -   Building the snowman still involves finding the right `ggplot2` functions, making points, and plotting them
 
 ## STEP 3: Build the card
-- Bu ilt snowman with functions `geom_point()`, `geom_segment()`, and `geom_curve()`
+- Built snowman with functions `geom_point()`, `geom_segment()`, and `geom_curve()`
 
 ```{r, echo=F, eval=T}
 # coordinates for three snowballs forming snowman's body
