@@ -14,19 +14,6 @@ from: markdown+emoji
 
 # I. Introduction
 
-## As a creative person at heart, I enjoyed R as an art form.
-
-- "Maybe stories are just data with a soul." - Brene Brown
-
-::: columns
-::: {.column .medium width="50%"}
-![](images/ken_guitar.jpg){width="85%"}
-:::
-::: {.column .medium width="50%"}
-![](images/r_code_logo.png){width="65%"}
-:::
-:::
-
 ## Around the time I got my MS in Stats, I was slowly losing my R knowledge
 
 ::: columns

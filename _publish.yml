@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: 791a0f28-8b32-4084-b04c-cbcc6769c1a7
+      url: 'https://kvu777.quarto.pub/drawing-a-christmas-card-with-the-ggplot2-package'
