@@ -408,19 +408,6 @@
 <h1>I. Introduction</h1>
 
 </section>
-<section id="as-a-creative-person-at-heart-i-enjoyed-r-as-an-art-form." class="slide level2">
-<h2>As a creative person at heart, I enjoyed R as an art form.</h2>
-<ul>
-<li>“Maybe stories are just data with a soul.” - Brene Brown</li>
-</ul>
-<div class="columns">
-<div class="column medium" style="width:50%;">
-<p><img data-src="images/ken_guitar.jpg" style="width:85.0%"></p>
-</div><div class="column medium" style="width:50%;">
-<p><img data-src="images/r_code_logo.png" style="width:65.0%"></p>
-</div>
-</div>
-</section>
 <section id="around-the-time-i-got-my-ms-in-stats-i-was-slowly-losing-my-r-knowledge" class="slide level2">
 <h2>Around the time I got my MS in Stats, I was slowly losing my R knowledge</h2>
 <div class="columns">
@@ -435,10 +422,24 @@
 <h2>I wanted to spread joy for the Christmas holiday season</h2>
 
 <img data-src="images/intro_xmas_conf.jpg" class="r-stretch"></section>
+<section id="plus-rtistry-examples-inspired-me-to-draw-using-r." class="slide level2">
+<h2>Plus, #rtistry examples inspired me to draw using R.</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="citation" data-cites="djnavarro">@djnavarro</span>’s <a href="https://github.com/djnavarro/flametree">flametree</a> <img data-src="images/djnavarro_rtistry.png" style="width:110.0%"></p>
+</div><div class="column" style="width:50%;">
+<p><span class="citation" data-cites="cutterkom">@cutterkom</span>’s <a href="https://github.com/cutterkom/generativeart">generativeart</a> <img data-src="images/cutterkom_genart.png" style="width:50.0%"></p>
+</div>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+
+<img data-src="images/step3_wanna_build_snowman.gif" class="image-center r-stretch"></section>
 <section id="so-what-did-i-decide-to-do-then" class="slide level2">
 <h2>So what did I decide to do then?</h2>
 <ul>
-<li><strong>BUILD A CHRISTMAS CARD…WITH R CODE!!!</strong></li>
+<li><strong>BUILD A CHRISTMAS CARD…WITH R CODE!!!</strong> <img data-src="images/xmas_card_done.png" style="width:70.0%"></li>
 </ul>
 </section></section>
 <section>
@@ -446,361 +447,101 @@
 <h1>II. The Design Process</h1>
 
 </section>
-<section id="step-1-brainstorm-the-idea" class="slide level2">
-<h2>STEP 1: Brainstorm the idea</h2>
-<p>Find my motivation</p>
-<div class="columns">
-<div class="column" style="width:100%;">
-<p><img data-src="images/step1_know_why.jpg" style="width:75.0%"></p>
-</div>
-</div>
-</section>
-<section id="step-1-brainstorm-the-idea-1" class="slide level2">
-<h2>STEP 1: Brainstorm the idea</h2>
-<p>Visualize the outcome</p>
+<section id="a.-visualize-the-outcome" class="slide level2">
+<h2>a. Visualize the outcome</h2>
 <div class="columns">
 <div class="column medium" style="width:100%;">
 <p><img data-src="images/design_step1_holiday_card_draft.jpg" style="width:40.0%"></p>
 </div>
 </div>
 </section>
-<section id="step-2-research-your-tools" class="slide level2">
-<h2>STEP 2: Research your tools</h2>
+<section id="b.-picking-my-r-packages" class="slide level2">
+<h2>b. Picking my R packages</h2>
 <p>Chose the ggplot2 package due to popularity, familiarity, and customization</p>
 
 <img data-src="images/step2_pick_ggplot2.png" class="r-stretch"></section>
-<section id="step-2-research-your-tools-1" class="slide level2">
-<h2>STEP 2: Research your tools</h2>
+<section id="c.-picking-my-r-packages" class="slide level2">
+<h2>c.&nbsp;Picking my R packages</h2>
 <ul>
 <li>Additional packages
 <ul>
 <li><code>extrafont</code>: for loading in custom fonts</li>
-<li><code>dplyr</code>: for wrangling and working with data frames</li>
+<li><code>dplyr</code>: for wrangling and working with large amounts of data</li>
 </ul></li>
 </ul>
-</section>
-<section id="step-3-build-the-card" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<ul>
-<li>With plotting any <code>ggplot2</code> object
-<ul>
-<li>First, pick a <code>ggplot2</code> function</li>
-<li>Next, build a compatible set of points</li>
-<li>Then, plot them (with or without adjustements)</li>
-</ul></li>
-</ul>
-</section>
-<section id="step-3-build-the-card-1" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<ul>
-<li>Ex. Build the base of the Christmas tree</li>
-<li>First, find a function to meet your needs (i.e., <code>geom_polygon</code> for drawing shapes)</li>
-</ul>
-</section>
-<section id="step-3-build-the-card-2" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Set up coordinates for the tree base and tree trunk to fit <code>geom_polygon</code>’s plotting requirements</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>xmas_tree <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y,</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  </span>
-<span id="cb1-4"><a href="#cb1-4"></a>   <span class="co"># left side of tree base</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>   <span class="sc">-</span><span class="dv">6</span>, <span class="dv">5</span>,</span>
-<span id="cb1-6"><a href="#cb1-6"></a>   <span class="sc">-</span><span class="dv">3</span>, <span class="dv">10</span>,</span>
-<span id="cb1-7"><a href="#cb1-7"></a>   <span class="sc">-</span><span class="fl">4.5</span>, <span class="dv">10</span>,</span>
-<span id="cb1-8"><a href="#cb1-8"></a>   <span class="sc">-</span><span class="dv">2</span>, <span class="dv">15</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  </span>
-<span id="cb1-10"><a href="#cb1-10"></a>   <span class="co"># top of tree</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>   <span class="sc">-</span><span class="dv">3</span>, <span class="dv">15</span>,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>   <span class="dv">0</span>, <span class="dv">20</span>,</span>
-<span id="cb1-13"><a href="#cb1-13"></a>   <span class="dv">3</span>, <span class="dv">15</span>,</span>
-<span id="cb1-14"><a href="#cb1-14"></a>  </span>
-<span id="cb1-15"><a href="#cb1-15"></a>   <span class="co"># right side of tree base</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>   <span class="dv">2</span>, <span class="dv">15</span>,</span>
-<span id="cb1-17"><a href="#cb1-17"></a>   <span class="fl">4.5</span>, <span class="dv">10</span>,</span>
-<span id="cb1-18"><a href="#cb1-18"></a>   <span class="dv">3</span>, <span class="dv">10</span>,</span>
-<span id="cb1-19"><a href="#cb1-19"></a>   <span class="dv">6</span>, <span class="dv">5</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>)</span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="co"># coordinates for the tree trunk</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>xmas_trunk <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb1-24"><a href="#cb1-24"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y,</span>
-<span id="cb1-25"><a href="#cb1-25"></a>   <span class="sc">-</span><span class="dv">1</span>, <span class="dv">5</span>,</span>
-<span id="cb1-26"><a href="#cb1-26"></a>   <span class="dv">1</span>, <span class="dv">5</span>,</span>
-<span id="cb1-27"><a href="#cb1-27"></a>   <span class="dv">1</span>, <span class="dv">0</span>,</span>
-<span id="cb1-28"><a href="#cb1-28"></a>   <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-3" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Use <code>geom_polygon()</code> to draw shapes with coordinates (i.e., tree base and trunk)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>xmas_ggplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  </span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="co"># adding tree</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> xmas_tree,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>                <span class="at">mapping =</span> <span class="fu">aes</span>(x, y),</span>
-<span id="cb2-6"><a href="#cb2-6"></a>            <span class="at">fill =</span> <span class="st">"#009E73"</span>) <span class="sc">+</span> </span>
-<span id="cb2-7"><a href="#cb2-7"></a>  </span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="co"># adding trunk</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> xmas_trunk,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>               <span class="at">mapping =</span> <span class="fu">aes</span>(x, y),</span>
-<span id="cb2-11"><a href="#cb2-11"></a>               <span class="at">fill =</span> <span class="st">"#926718"</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-4" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>xmas_ggplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="step-3-build-the-card-5" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>This approach used for almost every aspect of the card to get this so far…</p>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="step-3-build-the-card-6" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Replace data viz elements (i.e., tick marks, axes labels, gridlines, etc) with festive aesthetics</p>
+<img data-src="images/dplyr_hex.jpg" class="r-stretch"></section>
+<section id="c.-picking-my-r-packages-1" class="slide level2">
+<h2>c.&nbsp;Picking my R packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">theme</span>(</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    <span class="co"># make panel background black</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>), </span>
-<span id="cb4-5"><a href="#cb4-5"></a>    </span>
-<span id="cb4-6"><a href="#cb4-6"></a>    <span class="co"># removing misc plotting elements</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-8"><a href="#cb4-8"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-10"><a href="#cb4-10"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-11"><a href="#cb4-11"></a>    </span>
-<span id="cb4-12"><a href="#cb4-12"></a>    <span class="co"># adding brown frame around photo</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#926718"</span>),</span>
-<span id="cb4-14"><a href="#cb4-14"></a>    </span>
-<span id="cb4-15"><a href="#cb4-15"></a>    <span class="co"># removing plotting legend</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-7" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add some falling snow</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># TRIVIA: the seed number is the release date # of the song "Last Christmas" by Wham! (aka December 3, 1984)</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">set.seed</span>(<span class="dv">120384</span>) </span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a>snow_points <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="at">x =</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">20</span>, <span class="at">max =</span> <span class="dv">17</span>),</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="at">y =</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">max =</span> <span class="dv">36</span>)</span>
-<span id="cb5-7"><a href="#cb5-7"></a>) </span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> snow_points,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(x, y),</span>
-<span id="cb5-12"><a href="#cb5-12"></a>             <span class="at">color =</span> <span class="st">"white"</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>             )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-8" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add a snowy ground</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># add points marking peaks of bumpy snowy</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># ground</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>xmas_snowground <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y,</span>
-<span id="cb6-5"><a href="#cb6-5"></a> <span class="sc">-</span><span class="dv">30</span>, <span class="fl">2.5</span>,</span>
-<span id="cb6-6"><a href="#cb6-6"></a> <span class="sc">-</span><span class="dv">10</span>, <span class="fl">0.5</span>,</span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="sc">-</span><span class="dv">5</span>, <span class="fl">1.5</span>,</span>
-<span id="cb6-8"><a href="#cb6-8"></a>   <span class="dv">0</span>, <span class="fl">0.2</span>,</span>
-<span id="cb6-9"><a href="#cb6-9"></a>   <span class="dv">5</span>, <span class="fl">0.8</span>,</span>
-<span id="cb6-10"><a href="#cb6-10"></a>  <span class="dv">12</span>, <span class="fl">0.4</span>,</span>
-<span id="cb6-11"><a href="#cb6-11"></a>  <span class="dv">30</span>, <span class="dv">1</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-9" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add a snowy ground</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>xmas_ggplot<span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="co"># plotting an uneven snowy ground</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> xmas_snowground,</span>
-<span id="cb7-4"><a href="#cb7-4"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">ymax=</span>y), </span>
-<span id="cb7-5"><a href="#cb7-5"></a>                 <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
-<span id="cb7-6"><a href="#cb7-6"></a>                 <span class="at">xmax =</span> <span class="cn">Inf</span>,</span>
-<span id="cb7-7"><a href="#cb7-7"></a>                 <span class="at">ymin =</span> <span class="dv">0</span>, </span>
-<span id="cb7-8"><a href="#cb7-8"></a>                 <span class="at">fill=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>  </span>
-<span id="cb7-10"><a href="#cb7-10"></a>  <span class="co"># adding a flat horizontal line for the snowy ground</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">seq</span>(<span class="fl">0.5</span>, <span class="sc">-</span><span class="dv">50</span>, <span class="sc">-</span><span class="fl">0.01</span>),</span>
-<span id="cb7-12"><a href="#cb7-12"></a>             <span class="at">color =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-10" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>xmas_ggplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="step-3-build-the-card-11" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<ul>
-<li>Used <code>coord_cartesian</code> to zoom in where tree is without throwing out points out of range</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  </span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="co"># expand plotting limits</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">35</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">15</span>, <span class="dv">15</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-12" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Now, add a holiday greeting</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">font_import</span>(<span class="at">paths =</span> <span class="fu">getwd</span>(), <span class="at">prompt =</span> F)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">loadfonts</span>()</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co"># adding holiday greeting</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="st">"Happy Holidays!"</span>, </span>
-<span id="cb10-7"><a href="#cb10-7"></a>                 <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">29</span>),</span>
-<span id="cb10-8"><a href="#cb10-8"></a>            <span class="at">color =</span> <span class="st">"#F0E442"</span>, </span>
-<span id="cb10-9"><a href="#cb10-9"></a>            <span class="at">size =</span> <span class="dv">16</span>,</span>
-<span id="cb10-10"><a href="#cb10-10"></a>            <span class="at">family =</span> <span class="st">"Segoe Script"</span>) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a>  </span>
-<span id="cb10-12"><a href="#cb10-12"></a>  <span class="co"># adjusting the caption text</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Segoe Script"</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-13" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>So far, looks good…</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>xmas_ggplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
-<section id="section" class="slide level2">
-<h2></h2>
-
-<img data-src="images/step3_wanna_build_snowman.gif" class="image-center r-stretch"></section>
-<section id="step-3-build-the-card-14" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<ul>
-<li>Building the snowman still involves finding the right <code>ggplot2</code> functions, making points, and plotting them</li>
-</ul>
-</section>
-<section id="step-3-build-the-card-15" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<ul>
-<li>Built snowman with functions <code>geom_point()</code>, <code>geom_segment()</code>, and <code>geom_curve()</code></li>
-</ul>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
-<section id="step-3-build-the-card-16" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add hat for snowman</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># coordinates for top of the hat</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>snowman_hat_top <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="sc">~</span>x0, <span class="sc">~</span>x1, <span class="sc">~</span>y0, <span class="sc">~</span>y1,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fl">9.25</span>, <span class="fl">10.75</span>, <span class="fl">14.5</span>, <span class="dv">17</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>)</span>
-<span id="cb12-6"><a href="#cb12-6"></a></span>
-<span id="cb12-7"><a href="#cb12-7"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb12-8"><a href="#cb12-8"></a>  <span class="co"># hat top</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>    <span class="fu">geom_rect</span>(</span>
-<span id="cb12-10"><a href="#cb12-10"></a>      <span class="at">data =</span> snowman_hat_top,</span>
-<span id="cb12-11"><a href="#cb12-11"></a>      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">xmin =</span> x0, <span class="at">ymin =</span> y0,</span>
-<span id="cb12-12"><a href="#cb12-12"></a>                    <span class="at">xmax =</span> x1, <span class="at">ymax =</span> y1),</span>
-<span id="cb12-13"><a href="#cb12-13"></a>      <span class="at">fill =</span> <span class="st">"#404040"</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a>      </span>
-<span id="cb12-15"><a href="#cb12-15"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-17" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add hat for snowman</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb13-2"><a href="#cb13-2"></a>  </span>
-<span id="cb13-3"><a href="#cb13-3"></a>      <span class="co"># hat base</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fl">8.5</span>, <span class="at">y =</span> <span class="dv">14</span>,</span>
-<span id="cb13-6"><a href="#cb13-6"></a>                      <span class="at">xend =</span> <span class="fl">11.5</span>, <span class="at">yend =</span> <span class="dv">14</span>),</span>
-<span id="cb13-7"><a href="#cb13-7"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y,</span>
-<span id="cb13-8"><a href="#cb13-8"></a>                  <span class="at">xend =</span> xend, <span class="at">yend =</span> yend),</span>
-<span id="cb13-9"><a href="#cb13-9"></a>    <span class="at">color =</span> <span class="st">"#404040"</span>,</span>
-<span id="cb13-10"><a href="#cb13-10"></a>    <span class="at">lineend =</span> <span class="st">"round"</span>,</span>
-<span id="cb13-11"><a href="#cb13-11"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a>  </span>
-<span id="cb13-14"><a href="#cb13-14"></a>    <span class="co"># red hat band</span></span>
-<span id="cb13-15"><a href="#cb13-15"></a>    <span class="fu">geom_segment</span>(</span>
-<span id="cb13-16"><a href="#cb13-16"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fl">9.25</span>, <span class="at">y =</span> <span class="fl">14.45</span>,</span>
-<span id="cb13-17"><a href="#cb13-17"></a>                      <span class="at">xend =</span> <span class="fl">10.75</span>, <span class="at">yend =</span> <span class="fl">14.45</span>),</span>
-<span id="cb13-18"><a href="#cb13-18"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y,</span>
-<span id="cb13-19"><a href="#cb13-19"></a>                  <span class="at">xend =</span> xend, <span class="at">yend =</span> yend),</span>
-<span id="cb13-20"><a href="#cb13-20"></a>    <span class="at">color =</span> <span class="st">"#D55E00"</span>,</span>
-<span id="cb13-21"><a href="#cb13-21"></a>    <span class="at">lineend =</span> <span class="st">"round"</span>,</span>
-<span id="cb13-22"><a href="#cb13-22"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb13-23"><a href="#cb13-23"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-18" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add scarf</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># two tribbles for coordinates for parts of the scarf</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>snowman_scarf <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>xend, <span class="sc">~</span>yend,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">10</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a></span>
-<span id="cb14-7"><a href="#cb14-7"></a>snowman_scarf2 <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb14-8"><a href="#cb14-8"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>xend, <span class="sc">~</span>yend,</span>
-<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fl">9.25</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">6</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-3-build-the-card-19" class="slide level2">
-<h2>STEP 3: Build the card</h2>
-<p>Add scarf</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>xmas_ggplot <span class="ot">&lt;-</span> xmas_ggplot <span class="sc">+</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  </span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="co"># draw the scarf</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_curve</span>(<span class="at">data =</span> snowman_scarf2,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
-<span id="cb15-6"><a href="#cb15-6"></a>                           <span class="at">xend =</span> xend, </span>
-<span id="cb15-7"><a href="#cb15-7"></a>                           <span class="at">yend =</span> yend),</span>
-<span id="cb15-8"><a href="#cb15-8"></a>             <span class="at">linewidth =</span> <span class="dv">3</span>,</span>
-<span id="cb15-9"><a href="#cb15-9"></a>             <span class="at">color =</span> <span class="st">"#56B4E9"</span>,</span>
-<span id="cb15-10"><a href="#cb15-10"></a>             <span class="at">curvature =</span> <span class="sc">-</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a>  </span>
-<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">geom_curve</span>(<span class="at">data =</span> snowman_scarf,</span>
-<span id="cb15-13"><a href="#cb15-13"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
-<span id="cb15-14"><a href="#cb15-14"></a>                           <span class="at">xend =</span> xend, </span>
-<span id="cb15-15"><a href="#cb15-15"></a>                           <span class="at">yend =</span> yend),</span>
-<span id="cb15-16"><a href="#cb15-16"></a>             <span class="at">linewidth =</span> <span class="dv">3</span>,</span>
-<span id="cb15-17"><a href="#cb15-17"></a>             <span class="at">color =</span> <span class="st">"#56B4E9"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># for data visualization</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(extrafont) <span class="co"># for loading custom fonts</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr) <span class="co"># for wrangling data frames</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
-<section id="and-the-moment-youve-been-waitin-for" class="title-slide slide level1 center">
-<h1>…and, the moment you’ve been waitin for!</h1>
+<section id="iii.-the-grammar-of-graphics" class="title-slide slide level1 center">
+<h1>III. The grammar of graphics</h1>
 
 </section>
-<section id="ta-da" class="slide level2">
-<h2>Ta da!</h2>
+<section id="a.-the-grammar-of-graphics" class="slide level2">
+<h2>a. The grammar of graphics</h2>
+<ul>
+<li>The <strong>grammar of graphics</strong> is a way of organizing and prepping how data get visualized</li>
+<li>It usually consists of three major elements
+<ul>
+<li>The <strong>data</strong></li>
+<li>The <strong>aesthetic mapping</strong>: arranging where to display your data</li>
+<li>The <strong>geometries</strong>: how to display your data (i.e., <code>ggplot2</code> functions)</li>
+</ul></li>
+</ul>
+</section>
+<section id="b.-the-layout-of-the-plotting-area" class="slide level2">
+<h2>b. The layout of the plotting area</h2>
+<p><code>ggplot2</code> displays data on a coordinate system with an x-axis and y-axis</p>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-21-1.png" width="768" class="r-stretch"></section></section>
+<img data-src="images/ggplot2_coordiante_sys_axes.jpg" style="width:100.0%" class="r-stretch"></section>
+<section id="b.-the-layout-of-the-plotting-area-1" class="slide level2">
+<h2>b. The layout of the plotting area</h2>
+<ul>
+<li>Points written in the format <strong>(x,y)</strong></li>
+</ul>
+
+<img data-src="images/ggplot2_coordiante_sys_points.jpg" class="r-stretch"></section>
+<section id="b.-sketchs-coordinates-meant-for-ggplot2s-coordinate-system" class="slide level2">
+<h2>b. Sketch’s coordinates meant for ggplot2’s coordinate system</h2>
+
+<img data-src="images/design_step1_holiday_card_draft.jpg" style="width:10.0%" class="r-stretch"></section></section>
+<section>
+<section id="iv.-how-to-plot-in-ggplot2" class="title-slide slide level1 center">
+<h1>IV. How to plot in ggplot2</h1>
+
+</section>
+<section id="lets-show-by-drawing-bare-top-part-of-christmas-tree-in-this-card" class="slide level2">
+<h2>Let’s show by drawing bare top part of Christmas tree in this card</h2>
+
+<img data-src="images/xmas_card_done.png" class="r-stretch"></section>
+<section id="step-1-pick-a-ggplot2-function" class="slide level2">
+<h2>STEP 1: Pick a <code>ggplot2</code> function</h2>
+<ul>
+<li>Ex. <code>geom_point()</code> for scatterplots, <code>geom_polygon()</code> for shapes</li>
+</ul>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section id="step-2-create-your-data" class="slide level2">
+<h2>STEP 2: Create your data</h2>
+<ul>
+<li>Measurements on sketch translate into points <img data-src="images/sketch_to_r_code_pts.jpg"></li>
+</ul>
+</section>
+<section id="step-3-start-plotting" class="slide level2">
+<h2>STEP 3: Start plotting</h2>
+<p>Drawing out the top part of the tree <img data-src="images/xmas_tree_top_from_code_to_graph.jpg"></p>
+</section>
+<section id="ta-da" class="slide level2">
+<h2>TA DA!</h2>
+
+<img data-src="images/xmas_card_done.png" class="r-stretch"></section></section>
 <section>
 <section id="iii.-conclusion" class="title-slide slide level1 center">
 <h1>III. Conclusion</h1>
@@ -813,12 +554,7 @@
 <section id="i-got-better-at-staying-organized-with-complex-projects" class="slide level2">
 <h2>2. I got better at staying organized with complex projects</h2>
 
-<img data-src="images/schedule-planning-concept.jpg" style="width:75.0%" class="r-stretch"></section></section>
-<section>
-<section id="these-two-lessons-are-valid-but-not-as-important-as-this-one" class="title-slide slide level1 center">
-<h1>These two lessons are valid, but not as important as this one…</h1>
-
-</section>
+<img data-src="images/schedule-planning-concept.jpg" style="width:75.0%" class="r-stretch"></section>
 <section id="be-yourself-as-you-ken-do-it" class="slide level2">
 <h2>3. Be yourself as you KEN do it!</h2>
 
