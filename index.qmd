@@ -53,7 +53,7 @@ from: markdown+emoji
 ## So what did I decide to do then?
 
 -   **BUILD A CHRISTMAS CARD...WITH R CODE!!!** 
-![](images/xmas_card_done.png){width="70%"}
+![](images/xmas_card_done.png){width="60%"}
 
 # II. The Design Process
 ## a. Visualize the outcome
@@ -129,7 +129,7 @@ ggpubr::ggarrange(plt1, plt2, ncol = 2)
 
 ## STEP 2: Create your data
 - Measurements on sketch translate into points
-![](images/sketch_to_r_code_pts.jpg)
+![](images/sketch_to_r_code_pts.jpg){width="75%"}
 ```{r, echo=F, eval=T}
 xmas_tree <- tribble(
   ~x, ~y,
